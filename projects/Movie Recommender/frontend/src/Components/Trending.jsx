@@ -26,7 +26,7 @@ const Trending = ({ darkMode }) => {
 
   return (
     <section
-      className={`py-10 px-5 ${
+      className={`py-15 px-5 ${
         darkMode ? 'bg-gray-900 text-gray-100' : 'bg-white text-gray-900'
       }`}
     >

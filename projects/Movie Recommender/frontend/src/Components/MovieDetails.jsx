@@ -109,7 +109,7 @@ const MovieDetails = ({ darkMode }) => {
                     </div>
                 </div>
             </div>
-           <div className={`flex justify-center items-center${darkMode ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'}`}>
+           <div className={`py-10 flex justify-center items-center ${darkMode ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'}`}>
            <a
                 href={movie.homepage}
                 target="_blank"
