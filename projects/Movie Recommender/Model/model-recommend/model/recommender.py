@@ -8,6 +8,7 @@ from nltk.stem.porter import PorterStemmer
 from dotenv import load_dotenv
 import os
 import pathlib
+import gzip
 
 
 
@@ -21,9 +22,9 @@ BASE_DIR = pathlib.Path(__file__).resolve().parent
 DATA_DIR = BASE_DIR.parent / "data"
 
 Movies = pd.read_csv(DATA_DIR / "movies_data.csv")
-with open(DATA_DIR / "vectors.pkl", "rb") as f:
+with gzip.open(DATA_DIR / "vectors.pkl.gz", "rb") as f:
     vectors = pickle.load(f)
-with open(DATA_DIR / "similarity.pkl", "rb") as f:
+with gzip.open(DATA_DIR / "similarity.pkl.gz", "rb") as f:
     similarity = pickle.load(f)
 with open(DATA_DIR / "tfid.pkl", "rb") as f:
     tfid = pickle.load(f)
@@ -124,10 +125,10 @@ def recommend(movie):
             similarity = np.hstack([similarity, new_col])
 
             Movies.to_csv("movies_data.csv", index=False)
-            with open("vectors.pkl", "wb") as f:
-                pickle.dump(vectors, f)
-            with open("similarity.pkl", "wb") as f:
-                pickle.dump(similarity, f)
+            with gzip.open("vectors.pkl.gz", "wb") as f:
+                pickle.dump(vectors, f, protocol=pickle.HIGHEST_PROTOCOL)
+            with gzip.open("similarity.pkl.gz", "wb") as f:
+                pickle.dump(similarity, f, protocol=pickle.HIGHEST_PROTOCOL)
         else:
             print(details)
             return
