@@ -1,3 +1,5 @@
 # Auto detect text files and perform LF normalization
 * text=auto
 *.pkl.gz filter=lfs diff=lfs merge=lfs -text
+similarity.pkl.gz filter=lfs diff=lfs merge=lfs -text
+vectors.pkl.gz filter=lfs diff=lfs merge=lfs -text
