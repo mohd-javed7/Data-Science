@@ -15,26 +15,30 @@ const Navbar = ({ darkMode, setDarkMode }) => {
         }`}
     >
       {/* Logo */}
-      <Link to="/"><div className="text-2xl bg-gradient-to-r from-indigo-500 to-purple-600 bg-clip-text text-transparent">rcmndr</div>
-      </Link>
+      <Link to="/">
+  <div className="text-2xl bg-gradient-to-r from-indigo-500 to-purple-600 bg-clip-text text-transparent">
+    <img src="./rcmndr2.svg" className="inline h-8 w-8 align-middle mr-2" /> 
+    rcmndr
+  </div>
+</Link>
       {/* Desktop Nav */}
       <div className="hidden md:flex items-center space-x-5">
         <ul className="flex items-center space-x-4">
           <li>
-            <a
-              href="#"
+            <Link
+              to="/recommendations"
               className={`border border-indigo-500 px-6 py-2 rounded-full font-medium transition-all duration-300 hover:text-white hover:bg-gradient-to-r hover:from-indigo-500 hover:to-purple-600 hover:shadow-lg hover:shadow-purple-500/50 hover:scale-105 inline-block ${darkMode ? "text-indigo-400" : "text-indigo-600"}`}
             >
               {<Sparkles className="inline w-4 h-4 " />} Get Recommendations
-            </a>
+            </Link>
           </li>
 
           <li>
-            <a href="#">
+            <Link to="/login">
               <button className="bg-gradient-to-r from-indigo-500 to-purple-600 text-white px-6 py-2 rounded-full hover:shadow-lg hover:shadow-purple-500/50 transform hover:scale-105 transition-all duration-200 font-semibold cursor-pointer">
                 Get Started
               </button>
-            </a>
+            </Link>
           </li>
         </ul>
         <button onClick={toggleDarkMode} className={`p-2 rounded-lg ${darkMode ? 'bg-gray-800 text-yellow-400' : 'bg-gray-100 text-gray-700'} hover:scale-110 transition-transform duration-200`}>
@@ -72,18 +76,20 @@ const Navbar = ({ darkMode, setDarkMode }) => {
       >
         <ul className="space-y-4">
           <li>
-            <a
-              href="#"
-              className="text-indigo-600 border border-indigo-500 px-6 py-2 rounded-full font-medium transition-all duration-300 hover:text-white hover:bg-gradient-to-r hover:from-indigo-500 hover:to-purple-600 hover:shadow-lg hover:shadow-purple-500/50 hover:scale-105 inline-block"
+          <Link
+              to="/recommendations"
+              className={`border border-indigo-500 px-6 py-2 rounded-full font-medium transition-all duration-300 hover:text-white hover:bg-gradient-to-r hover:from-indigo-500 hover:to-purple-600 hover:shadow-lg hover:shadow-purple-500/50 hover:scale-105 inline-block ${darkMode ? "text-indigo-400" : "text-indigo-600"}`}
             >
-              &#10022; Get Recommendations
-            </a>
+              {<Sparkles className="inline w-4 h-4 " />} Get Recommendations
+            </Link>
           </li>
 
         </ul>
-        <button className="w-full mt-4 bg-gradient-to-r from-indigo-500 to-purple-600 text-white px-6 py-2 rounded-full font-semibold hover:shadow-lg hover:shadow-purple-500/50 transform hover:scale-105 transition-all duration-200">
-          Get Started
-        </button>
+        <Link to="/login">
+              <button className="w-full mt-4 bg-gradient-to-r from-indigo-500 to-purple-600 text-white px-6 py-2 rounded-full font-semibold hover:shadow-lg hover:shadow-purple-500/50 transform hover:scale-105 transition-all duration-200">
+                Get Started
+              </button>
+            </Link>
         <button onClick={toggleDarkMode} className={`p-2 mt-2 rounded-lg ${darkMode ? 'bg-gray-800 text-yellow-400' : 'bg-gray-100 text-gray-700'} hover:scale-110 transition-transform duration-200`}>
           {darkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
         </button>
@@ -93,4 +99,4 @@ const Navbar = ({ darkMode, setDarkMode }) => {
   );
 };
 
-export default Navbar;
+export default Navbar; 
