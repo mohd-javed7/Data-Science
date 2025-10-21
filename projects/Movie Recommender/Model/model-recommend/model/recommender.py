@@ -22,9 +22,9 @@ BASE_DIR = pathlib.Path(__file__).resolve().parent
 DATA_DIR = BASE_DIR.parent / "data"
 
 Movies = pd.read_csv(DATA_DIR / "movies_data.csv")
-with gzip.open(DATA_DIR / "vectors.pkl.gz", "rb") as f:
+with open(DATA_DIR / "vectors.pkl", "rb") as f:
     vectors = pickle.load(f)
-with gzip.open(DATA_DIR / "similarity.pkl.gz", "rb") as f:
+with open(DATA_DIR / "similarity.pkl", "rb") as f:
     similarity = pickle.load(f)
 with open(DATA_DIR / "tfid.pkl", "rb") as f:
     tfid = pickle.load(f)
@@ -35,9 +35,9 @@ with open(DATA_DIR / "tfid.pkl", "rb") as f:
         vectors = tfid.fit_transform(Movies['tags']).toarray()
         similarity = cosine_similarity(vectors)
         with open(os.path.join(DATA_DIR, "vectors.pkl"), "wb") as f:
-            pickle.dump(vectors, f)
+            pickle.dump(vectors, f, protocol=pickle.HIGHEST_PROTOCOL)
         with open(os.path.join(DATA_DIR, "similarity.pkl"), "wb") as f:
-            pickle.dump(similarity, f)
+            pickle.dump(similarity, f, protocol=pickle.HIGHEST_PROTOCOL)
         print("Rebuild complete. Shapes now synced:")
         print("Movies:", Movies.shape)
         print("Vectors:", vectors.shape)
@@ -125,9 +125,9 @@ def recommend(movie):
             similarity = np.hstack([similarity, new_col])
 
             Movies.to_csv("movies_data.csv", index=False)
-            with gzip.open("vectors.pkl.gz", "wb") as f:
+            with open("vectors.pkl", "wb") as f:
                 pickle.dump(vectors, f, protocol=pickle.HIGHEST_PROTOCOL)
-            with gzip.open("similarity.pkl.gz", "wb") as f:
+            with open("similarity.pkl", "wb") as f:
                 pickle.dump(similarity, f, protocol=pickle.HIGHEST_PROTOCOL)
         else:
             print(details)
