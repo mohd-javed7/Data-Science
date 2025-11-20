@@ -12,7 +12,7 @@ import pathlib
 
 
 
-ps = PorterStemmer()
+ps = PorterStemmer() #stem
 tfid = TfidfVectorizer(max_features=8000, stop_words='english')
 load_dotenv()
 API_KEY = os.getenv("TMDB_API_KEY")
@@ -29,7 +29,7 @@ with open(DATA_DIR / "tfid.pkl", "rb") as f:
     tfid = pickle.load(f)
 
     if not (len(Movies) == vectors.shape[0] == similarity.shape[0]):
-        print("⚠️Mismatch detected! Rebuilding vectors & similarity...\n")
+        print("Mismatch detected! Rebuilding vectors & similarity...\n")
         tfid = TfidfVectorizer(max_features=5000, stop_words='english')
         vectors = tfid.fit_transform(Movies['tags']).toarray()
         similarity = cosine_similarity(vectors)
@@ -125,7 +125,7 @@ def recommend(movie):
 
             target_path = (DATA_DIR / "movies_data.csv").resolve()
             Movies.to_csv(target_path, index=False)
-            print("✅ Saved to:", target_path)
+            print("Saved to:", target_path)
             with open(DATA_DIR /"vectors.pkl", "wb") as f:
                 pickle.dump(vectors, f, protocol=pickle.HIGHEST_PROTOCOL)
             with open(DATA_DIR /"similarity.pkl", "wb") as f:

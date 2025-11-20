@@ -7,6 +7,7 @@ import MovieDetails from './Components/MovieDetails'
 import Footer from './Components/Footer'
 import Login from './pages/Login'
 import Recommendations from './pages/Recommendations'
+import Profile from './pages/Profile'
 function App() {
 
   const [darkMode, setDarkMode] = useState(() => {
@@ -28,6 +29,7 @@ function App() {
         </>}/>
         <Route path='/movie/:id' element={<MovieDetails darkMode={darkMode}/>}/>
         <Route path='/login' element={<Login darkMode={darkMode}/>}/>
+        <Route path='/profile'element={<Profile darkMode={darkMode}/>}/>
         <Route path='/recommendations' element={<Recommendations darkMode={darkMode}/>}/>
       </Routes>
       <Footer darkMode={darkMode}/>

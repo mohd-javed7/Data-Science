@@ -1,4 +1,4 @@
-CREATE DATABASE college;
+CREATE DATABASE IF NOT EXISTS college ;
 
 USE college;
 
@@ -17,7 +17,7 @@ SELECT * FROM student;
 
 SELECT name,id FROM student;
 
-SELECT * FROM student WHERE age > 22; #ages above 2 will be shown
+SELECT * FROM student WHERE age > 22; #ages above 22 will be shown
 
 SHOW DATABASES;
 SHOW TABLES; 

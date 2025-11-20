@@ -96,7 +96,7 @@ const MovieDetails = ({ darkMode }) => {
                                         src={
                                             member.profile_path
                                                 ? `https://image.tmdb.org/t/p/w185${member.profile_path}`
-                                                : '/placeholder.jpg' // fallback if no image
+                                                : '/placeholder.jpg'
                                         }
                                         alt={member.name}
                                         className="w-24 h-24 object-cover rounded-full mx-auto shadow-md"

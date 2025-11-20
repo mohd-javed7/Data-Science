@@ -46,7 +46,7 @@ const MovieCard = ({ title, genre, rating, year, image, id, darkMode }) => {
         <div className="p-3">
           <h3
             className="text-md font-semibold truncate"
-            title={title} // shows full title on hover
+            title={title} 
           >
             {title}
           </h3>

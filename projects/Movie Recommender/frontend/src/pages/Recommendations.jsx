@@ -1,28 +1,49 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useLocation } from "react-router-dom";
 import MovieCard from "../Components/MovieCard";
 
 const Recommendations = ({ darkMode }) => {
   const [searchMovie, setSearchMovie] = useState("");
   const [results, setResults] = useState([]);
-  const [movieDetails, setMovieDetails] = useState([]); // ✅ store fetched movie info here
+  const [movieDetails, setMovieDetails] = useState([]); 
   const [loading, setLoading] = useState(false);
   const [suggest, setSuggest] = useState("");
+  const token = localStorage.getItem("token")
+  const location = useLocation()
+  const psearchMovie = location.state?.movie
+  useEffect(() => {
+    if (psearchMovie) {
+      setSearchMovie(psearchMovie);
+      handleSubmit(); 
+    }
+  }, [psearchMovie]);
 
   const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
   const API_BASE = import.meta.env.VITE_API_URL;
 
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!searchMovie.trim()) return;
-
+    if (e) e.preventDefault();
+  
+    const movieToSearch = psearchMovie || searchMovie;
+    if (!movieToSearch.trim()) return;
+  
     setLoading(true);
+  
     try {
       const response = await axios.get(
-        `${API_BASE}/recommend/${encodeURIComponent(searchMovie)}`
+        `${API_BASE}/recommend/${encodeURIComponent(movieToSearch)}`
       );
-
+  
+      if (token) {
+        await axios.post(
+          "http://localhost:3000/api/search/add",
+          { movie: movieToSearch },
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+      }
+  
       if (response.data.recommendations) {
         const recommendedMovies = response.data.recommendations;
         setResults(recommendedMovies);
@@ -32,29 +53,26 @@ const Recommendations = ({ darkMode }) => {
         setResults([]);
         setMovieDetails([]);
         setSuggest(response.data.message);
-      } else {
-        setResults([]);
-        setMovieDetails([]);
       }
     } catch (error) {
-      console.error(`Error fetching ${searchMovie}: ${error}`);
+      console.error(`Error:`, error);
     } finally {
       setLoading(false);
     }
   };
+  
 
-  // ✅ Fetch movie details from TMDB for all recommended movies
   const fetchMovieDetails = async (movieNames) => {
     try {
       const promises = movieNames.map(async (name) => {
         const res = await axios.get(
           `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${name}`
         );
-        return res.data.results[0]; // pick the first matching movie
+        return res.data.results[0]; 
       });
 
       const fetchedMovies = await Promise.all(promises);
-      setMovieDetails(fetchedMovies.filter(Boolean)); // remove nulls
+      setMovieDetails(fetchedMovies.filter(Boolean)); 
     } catch (err) {
       console.error("Error fetching movie details:", err);
     }
@@ -66,7 +84,6 @@ const Recommendations = ({ darkMode }) => {
         darkMode ? "bg-gray-900 text-gray-100" : "bg-white text-gray-900"
       }`}
     >
-      {/* Title + Description */}
       <div className="rounded-xl p-8 max-w-3xl text-center">
         <h1
           className={`px-6 py-3 md:text-4xl font-bold mb-6 ${
