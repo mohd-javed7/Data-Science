@@ -1,0 +1,73 @@
+State: A state represents an element at a particular point in time.
+State Space: The complete set of all states reachable from the initial state by applying actions.
+Path: A sequence of states from the start to the goal.
+State Space Search: The process of exploring state space to find a solution path. Example: 8-puzzle tile arrangements.
+
+Control Strategies: A strategy determines which state to explore next. Completeness means finding a solution if one exists. Optimality means finding the best solution. Time Complexity is the computational time required. Space Complexity is the memory required. Efficiency means balancing time and space.
+
+Uninformed Search: Search without heuristics. Examples include BFS, DFS, and Uniform Cost Search.
+BFS (Breadth First Search): Explores nodes level by level starting from the root.
+DFS (Depth First Search): Explores deeper nodes before backtracking.
+Informed Search: Search using heuristics. Examples include Hill Climbing, Best First Search, A*, Means-Ends Analysis, Min-Max, and Alpha-Beta Pruning.
+
+Generate and Test: Generates possible solutions and checks if they satisfy the goal. Inefficient for large search spaces.
+
+Hill Climbing: An iterative heuristic search that moves toward better neighbours. Problems include local maxima, plateaus, and ridges.
+
+Best First Search: Expands the most promising node using f(n) = h(n). It is fast but may not be optimal and can follow misleading paths.
+
+Constraint Satisfaction Problem (CSP): Assigns values to variables under constraints. Components include variables, domains, and constraints. Applications include scheduling, planning, and resource allocation.
+
+Types of CSP: Binary CSP involves constraints between two variables. Non-binary CSP involves more than two variables. Hard constraints must be satisfied while soft constraints may be violated with cost.
+
+Means-Ends Analysis: Reduces the difference between current and goal state using operators. Example: Tower of Hanoi.
+
+Min-Max Search: Used in adversarial games like chess and tic-tac-toe. Assumes the opponent minimizes your score.
+
+Alpha-Beta Pruning: Optimized Min-Max that prunes branches that do not affect the result. Alpha is the best value for the maximizer, and Beta for the minimizer.
+
+Problem Characteristics: Problems may be well-defined or ill-defined, deterministic or non-deterministic, static or dynamic, and discrete or continuous. Agents may have single-state or multi-state knowledge.
+
+Production Systems: A computation model containing rules (IF-THEN), working memory, and an inference engine. They are modular, simple, and easy to modify.
+
+Types of Production Systems: Monotonic systems never invalidate previous conclusions. Non-monotonic systems may change earlier conclusions. Commutative systems always reach the same result regardless of rule order. Partially commutative systems depend on rule order.
+
+Artificial Intelligence: Field focused on machines that learn, reason, and solve problems.
+AI Techniques: Search-based, logic-based, machine learning, and deep learning.
+
+AI vs ML vs DL: AI is broad. ML learns patterns from data. DL uses deep neural networks and requires large datasets.
+
+Applications of AI: Healthcare (diagnosis, imaging), finance (fraud detection), transportation (self-driving), e-commerce (recommendation systems), security (biometrics), education (personalized learning), computer vision (object detection), NLP (translation and chatbots).
+
+Criteria for AI Success: Correctness, robustness, generalization, efficiency, scalability, interpretability, and ethical safety.
+
+Agents: An intelligent agent perceives the environment and acts. A rational agent maximizes performance.
+
+PEAS Model: Describes agents using Performance measure, Environment, Actuators, and Sensors.
+
+Nature of Agents: Autonomous, reactive, proactive, interactive, adaptive, and rational.
+
+Learning Agent Architecture: Components include sensors, critic, learning element, performance element, effectors, and problem generator.
+
+Advantages of AI: Automation, big data handling, continuous operation, accuracy, safety, and improvement over time.
+Disadvantages of AI: Data dependency, bias, failures outside training, high cost, ethical concerns, and lack of creativity.
+
+CNN: A deep learning model for image and pattern recognition. Used for image classification, object detection, and facial recognition.
+
+Convolution: Uses kernels/filters to detect edges, textures, and shapes through element-wise multiplication and sliding.
+
+Feature Map: The output of convolution showing detected features.
+
+Stride: Movement of the filter. Stride 1 produces detailed maps; stride 2 reduces detail.
+
+Padding: Adds zeros to preserve border information.
+
+Pooling: Reduces spatial size, prevents overfitting, and increases speed. Types include max pooling, average pooling, and min pooling.
+
+Flattening / GAP: Flattening converts 2D features to 1D vectors. GAP (Global Average Pooling) averages feature maps into a single vector.
+
+Image Classification: Image → Convolution → Activation → Pooling → Flatten/GAP → Dense layer → Output.
+
+Text Classification with CNN: Words → embeddings → 1D convolution → pooling → dense layer.
+
+Hyperparameters: Kernel size, number of filters, stride, padding, pooling type, learning rate, batch size, epochs, optimizer, and dropout rate.
